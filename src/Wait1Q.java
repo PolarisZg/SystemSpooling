@@ -15,7 +15,7 @@ public class Wait1Q {
         return processesWait1Q.size();
     }
 
-    synchronized void wakeProcess(){
+    void wakeProcess(){
         ReadyQ readyQ = ReadyQ.getInstance();
         for(int i = 0; i < processesWait1Q.size(); i++){
             readyQ.addProcess(processesWait1Q.get(i));
@@ -26,7 +26,7 @@ public class Wait1Q {
 
     }
 
-    synchronized int addProcess(){
+    int addProcess(){
         Process process = CPU.getInstance().getNowProcess();
         processesWait1Q.add(process);
 

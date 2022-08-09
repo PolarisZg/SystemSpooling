@@ -14,7 +14,7 @@ public class OutputController {
         return instance;
     }
 
-    static void add(String name, String data) throws Interrupt{
+    static void add(String name, String data) throws Interrupt {
         OutputBlock outputBlock = new OutputBlock(name);
         outputBlock = Spooling.SpoolingOut2Cache(data,outputBlock);
         instance.arrayList.add(outputBlock);

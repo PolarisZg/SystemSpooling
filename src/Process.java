@@ -29,7 +29,7 @@ class UserProcess extends Process{
     protected UserProcess() {}
 
     @Override
-    void run() throws Interrupt{
+    void run() throws Interrupt {
         super.run();
 
         try {
@@ -66,7 +66,7 @@ class SpoolingProcess extends Process{
 
 
     @Override
-    void run() throws Interrupt{
+    void run() throws Interrupt {
         super.run();
         Spooling.SpoolingOut2Io(OutputController.getTopProcessData());
     }

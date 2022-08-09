@@ -2,6 +2,6 @@
 
 public class RandomNumber {
     public static int getNumber(){
-        return (int)(100 * Math.random());
+        return (int)(100000 * Math.random());
     }
 }

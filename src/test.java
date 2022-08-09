@@ -1,38 +1,42 @@
+
 public class test {
     public static void main(String [] args){
 
-        UserProcess userProcess = new UserProcess(0,"aaaa","qbctesta");
-        ProcessController.addProcess(userProcess);
         try {
             for(int i = 0 ; i < 10 ; i++){
-                (new Add(i)).start();
+                (new Add(i + "" + i + "" + i, "qbctese" + i)).start();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        Thread cpuT = new Thread(new CPUThread(),"cpu");
+        cpuT.start();
+
     }
 }
 
 class Add implements Runnable{
 
-    private int i;
     private Thread t;
+    private String name;
+    private String data;
 
-    Add(int i){
-        this.i = i;
+    Add(String name, String data){
+        this.name = name;
+        this.data = data;
     }
 
     @Override
     public void run() {
-        UserProcess userProcess = new UserProcess(0,i + "" + i + "" + i + "" + i,"qbctest" + i);
+        UserProcess userProcess = new UserProcess(0,name,data);
         ProcessController.addProcess(userProcess);
     }
 
     void start(){
         if(t == null) {
-            t = new Thread(this, String.valueOf(i));
+            t = new Thread(this, name);
             t.start();
         }
     }

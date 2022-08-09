@@ -11,7 +11,7 @@ public class ReadyQ{
         return instance;
     }
 
-    int getLength(){
+    synchronized int getLength(){
         return processesReadyQ.size();
     }
 

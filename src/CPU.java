@@ -9,25 +9,23 @@ public class CPU {
     public static CPU getInstance(){return instance;}
 
     void run(){
-        while (true) {
             Process process = ProcessController.getAProcess();
 
             nowProcess = process;
 
             if(process == null){
                 System.out.println("CPU BREAK!!");
-                break;
+                return;
             }
 
             try {
-                System.out.println("------Process " + process.name + " in cpu in in");
+                System.out.println("------Process.Process " + process.name + " in cpu in in");
 
                 process.run();
             } catch (Interrupt e) {
-                System.out.println("------Process " + process.name + " out cpu out out");
+                System.out.println("------Process.Process " + process.name + " out cpu out out");
                 e.content();
             }
-        }
     }
 
     Process getNowProcess(){
@@ -38,4 +36,18 @@ public class CPU {
         return state;
     }
 
+}
+
+class CPUThread implements Runnable{
+
+    @Override
+    public void run() {
+        while (true){
+            if(ReadyQ.getInstance().getLength() != 0 || SpoolingProcess.getInstance().type != Type.WAIT_2){
+                CPU.getInstance().run();
+
+                System.out.println("===readyQ length = " + ReadyQ.getInstance().getLength());
+            }
+        }
+    }
 }

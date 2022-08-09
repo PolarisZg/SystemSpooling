@@ -1,36 +1,31 @@
 public class ProcessController {
 
-    static Process getAProcess(){
+    public static Process getAProcess(){
         int mooooooo = 2;
         // 这个变量将Spooling进程与普通进程被请求到的概率调整为 1 : moooooooo
 
         ReadyQ readyQ = ReadyQ.getInstance();
-        int random = RandomNumber.getNumber() % (readyQ.getLength() * mooooooo + 1);
-        if(random == 0){
-            Process process = SpoolingProcess.getInstance();
-            if(process.type == Type.WAIT_2){
-                return null;
-            }
+        int random = RandomNumber.getNumber();
+        Process spooling = SpoolingProcess.getInstance();
+
+        if(spooling.type == Type.READY){
+            random = random % (readyQ.getLength() * mooooooo + 1);
+            if(random == 0)
+                return spooling;
             else
-                return SpoolingProcess.getInstance();
+                return readyQ.getProcess(random / 10);
         }
-        else {
-            return readyQ.getProcess((random - 1) / mooooooo);
+        else{
+            if(readyQ.getLength() > 0)
+                return readyQ.getProcess(random % readyQ.getLength());
+            else
+                return null;
         }
     }
 
-    static void addProcess(Process process){
+    public static void addProcess(Process process){
 
         ReadyQ readyQ = ReadyQ.getInstance();
         readyQ.addProcess(process);
-
-        if(CPU.getInstance().getState() == CPU.DIE)
-            activeCPU();
-    }
-
-    synchronized static void activeCPU(){
-        if(CPU.getInstance().getState() == CPU.DIE){
-            CPU.getInstance().run();
-        }
     }
 }
