@@ -9,6 +9,7 @@ public class Demo {
 
         jFrame.add(new ProcessInPanel().getjPanel());
         jFrame.add(CPUPanel.getInstance().getjPanel());
+        jFrame.add(spoolingPanel.getInstance().getjPanel());
         jFrame.add(readyQPanel.getInstance().getjPanel());
         jFrame.add(waitQPanel.getInstance().getjPanel());
         jFrame.add(outCachePanel.getInstance().getjPanel());
@@ -186,5 +187,35 @@ class outCachePanel{
         for (OutputBlock outputBlock : arrayList) {
             jTextArea.append("---name : " + outputBlock.getName() + "     ---path :" + outputBlock.getPath() + System.lineSeparator() + "----------" + System.lineSeparator());
         }
+    }
+}
+
+class spoolingPanel{
+    private JPanel jPanel;
+    private JLabel jLabel;
+
+    private static final spoolingPanel instance = new spoolingPanel();
+    public static spoolingPanel getInstance(){return instance;}
+
+    private spoolingPanel(){
+        jPanel = new JPanel();
+        jPanel.setBorder(BorderFactory.createTitledBorder("spooling 状 态"));
+
+        jPanel.setLayout(new GridLayout(2,1));
+        jPanel.add(new JLabel("状 态"));
+        jLabel = new JLabel("READY");
+        jPanel.add(jLabel);
+    }
+
+    JPanel getjPanel(){
+        return jPanel;
+    }
+
+    void flashJLabel(int type){
+
+        if(type == Type.READY)
+            jLabel.setText("READY");
+        else
+            jLabel.setText("WAIT_2");
     }
 }

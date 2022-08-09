@@ -64,4 +64,11 @@ class SpoolingProcess extends Process{
         super.run();
         Spooling.SpoolingOut2Io(OutputController.getTopProcessData());
     }
+
+    @Override
+    void setType(int type) {
+        super.setType(type);
+
+        spoolingPanel.getInstance().flashJLabel(this.type);
+    }
 }

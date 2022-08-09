@@ -9,7 +9,9 @@ class EmptyOutputInterrupt extends Interrupt{
 
     void content(){
         SpoolingProcess spoolingProcess = SpoolingProcess.getInstance();
-        spoolingProcess.type = Type.WAIT_2;
+        spoolingProcess.setType(Type.WAIT_2);
+
+        //spoolingPanel.getInstance().flashJLabel(Type.WAIT_2);
     }
 }
 
@@ -37,5 +39,7 @@ class UserProcessEndInterrupt extends Interrupt{
 
     void content(){
         SpoolingProcess.getInstance().setType(Type.READY);
+
+        //spoolingPanel.getInstance().flashJLabel(Type.READY);
     }
 }
