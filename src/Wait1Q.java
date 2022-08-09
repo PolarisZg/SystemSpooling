@@ -22,6 +22,7 @@ public class Wait1Q {
         }
         processesWait1Q.clear();
 
+        waitQPanel.getInstance().flashTextArea(processesWait1Q);
         System.out.println("wait1Q clear!!");
 
     }
@@ -32,6 +33,7 @@ public class Wait1Q {
 
         System.out.println("wait1Q add " + process.name);
 
+        waitQPanel.getInstance().flashTextArea(processesWait1Q);
         return getLength();
     }
 }

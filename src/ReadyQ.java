@@ -22,6 +22,7 @@ public class ReadyQ{
 
         System.out.println("readyQ remove out " + process.name);
 
+        readyQPanel.getInstance().flashTextArea(processesReadyQ);
         return process;
     }
     synchronized int addProcess(Process process){
@@ -29,6 +30,7 @@ public class ReadyQ{
 
         System.out.println("readyQ add " + process.name);
 
+        readyQPanel.getInstance().flashTextArea(processesReadyQ);
         return getLength();
     }
 }

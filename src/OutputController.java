@@ -18,12 +18,16 @@ public class OutputController {
         OutputBlock outputBlock = new OutputBlock(name);
         outputBlock = Spooling.SpoolingOut2Cache(data,outputBlock);
         instance.arrayList.add(outputBlock);
+
+        outCachePanel.getInstance().flashTextArea(instance.arrayList);
     }
 
     static OutputBlock getTopProcessData() throws EmptyOutputInterrupt {
         if(instance.arrayList.size() > 0) {
             OutputBlock outputBlock = instance.arrayList.get(0);
             instance.arrayList.remove(0);
+
+            outCachePanel.getInstance().flashTextArea(instance.arrayList);
             return outputBlock;
         }
         else{
