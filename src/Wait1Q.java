@@ -15,16 +15,23 @@ public class Wait1Q {
         return processesWait1Q.size();
     }
 
-    void wakeProcess(){
+    synchronized void wakeProcess(){
         ReadyQ readyQ = ReadyQ.getInstance();
         for(int i = 0; i < processesWait1Q.size(); i++){
             readyQ.addProcess(processesWait1Q.get(i));
         }
         processesWait1Q.clear();
+
+        System.out.println("wait1Q clear!!");
+
     }
 
-    int addProcess(Process process){
+    synchronized int addProcess(){
+        Process process = CPU.getInstance().getNowProcess();
         processesWait1Q.add(process);
+
+        System.out.println("wait1Q add " + process.name);
+
         return getLength();
     }
 }

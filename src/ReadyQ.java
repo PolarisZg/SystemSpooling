@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class ReadyQ {
+public class ReadyQ{
     private final ArrayList<Process> processesReadyQ;
 
     private static final ReadyQ instance = new ReadyQ();
@@ -14,13 +14,21 @@ public class ReadyQ {
     int getLength(){
         return processesReadyQ.size();
     }
-    Process getProcess(int no){
+
+    synchronized Process getProcess(int no){
+
         Process process = processesReadyQ.get(no);
         processesReadyQ.remove(no);
+
+        System.out.println("readyQ remove out " + process.name);
+
         return process;
     }
-    int addProcess(Process process){
+    synchronized int addProcess(Process process){
         processesReadyQ.add(process);
+
+        System.out.println("readyQ add " + process.name);
+
         return getLength();
     }
 }

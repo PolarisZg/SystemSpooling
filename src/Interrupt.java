@@ -1,4 +1,5 @@
 public class Interrupt extends Exception{
+    void content(){}
 }
 
 class EmptyOutputInterrupt extends Interrupt{
@@ -8,7 +9,7 @@ class EmptyOutputInterrupt extends Interrupt{
 
     void content(){
         SpoolingProcess spoolingProcess = SpoolingProcess.getInstance();
-        spoolingProcess.type = type.WAIT_2;
+        spoolingProcess.type = Type.WAIT_2;
     }
 }
 
@@ -20,5 +21,21 @@ class SpoolingEndInterrupt extends Interrupt{
     void content(){
         Wait1Q wait1Q = Wait1Q.getInstance();
         wait1Q.wakeProcess();
+    }
+}
+
+class SpoolingCacheFullInterrupt extends Interrupt{
+    public SpoolingCacheFullInterrupt() {super();}
+
+    void content(){
+        Wait1Q.getInstance().addProcess();
+    }
+}
+
+class UserProcessEndInterrupt extends Interrupt{
+    public UserProcessEndInterrupt(){super();}
+
+    void content(){
+        SpoolingProcess.getInstance().setType(Type.READY);
     }
 }

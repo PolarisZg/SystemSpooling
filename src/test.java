@@ -1,20 +1,39 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
 public class test {
     public static void main(String [] args){
+
+        UserProcess userProcess = new UserProcess(0,"aaaa","qbctesta");
+        ProcessController.addProcess(userProcess);
         try {
-            UserProcess userProcess = new UserProcess(0,"1111","200000");
-            userProcess.run();
+            for(int i = 0 ; i < 10 ; i++){
+                (new Add(i)).start();
+            }
 
-            String s = "1";
-
-            SpoolingProcess.getInstance().run();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+}
+
+class Add implements Runnable{
+
+    private int i;
+    private Thread t;
+
+    Add(int i){
+        this.i = i;
+    }
+
+    @Override
+    public void run() {
+        UserProcess userProcess = new UserProcess(0,i + "" + i + "" + i + "" + i,"qbctest" + i);
+        ProcessController.addProcess(userProcess);
+    }
+
+    void start(){
+        if(t == null) {
+            t = new Thread(this, String.valueOf(i));
+            t.start();
+        }
     }
 }

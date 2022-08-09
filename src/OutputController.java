@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 // 需要大改，把Arraylist改成数组，因为需要固定位置
 // 不改了，再做一个spooling向输出井中的输出程序吧
+
 public class OutputController {
     ArrayList<OutputBlock> arrayList;
 
@@ -13,7 +14,7 @@ public class OutputController {
         return instance;
     }
 
-    static void add(String name, String data) throws Exception{
+    static void add(String name, String data) throws Interrupt{
         OutputBlock outputBlock = new OutputBlock(name);
         outputBlock = Spooling.SpoolingOut2Cache(data,outputBlock);
         instance.arrayList.add(outputBlock);
