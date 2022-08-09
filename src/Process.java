@@ -32,12 +32,6 @@ class UserProcess extends Process{
     void run() throws Interrupt {
         super.run();
 
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         OutputController.add(this.name,this.data);
 
         throw new UserProcessEndInterrupt();

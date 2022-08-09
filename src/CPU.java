@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 public class CPU {
     static final int DIE = 0;
     static final int ACTIVE = 1;
@@ -20,11 +22,20 @@ public class CPU {
 
             try {
                 System.out.println("------Process.Process " + process.name + " in cpu in in");
+                CPUPanel.getInstance().setInfo(process.getClass().getName(),process.name);
+
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 process.run();
             } catch (Interrupt e) {
-                System.out.println("------Process.Process " + process.name + " out cpu out out");
                 e.content();
+
+                System.out.println("------Process.Process " + process.name + " out cpu out out");
+                CPUPanel.getInstance().setInfo("","");
             }
     }
 
