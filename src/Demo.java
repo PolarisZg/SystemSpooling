@@ -185,14 +185,16 @@ class outCachePanel{
         jTextArea.setText("----------" + System.lineSeparator());
 
         for (OutputBlock outputBlock : arrayList) {
-            jTextArea.append("---name : " + outputBlock.getName() + "     ---path :" + outputBlock.getPath() + System.lineSeparator() + "----------" + System.lineSeparator());
+            jTextArea.append("---name : " + outputBlock.getName() + "     ---path :" + outputBlock.getPath() + System.lineSeparator()
+                    + "     ---length :" + outputBlock.getLength()
+                    + System.lineSeparator() + "----------" + System.lineSeparator());
         }
     }
 }
 
 class spoolingPanel{
     private JPanel jPanel;
-    private JLabel jLabel;
+    private JTextArea jTextArea;
 
     private static final spoolingPanel instance = new spoolingPanel();
     public static spoolingPanel getInstance(){return instance;}
@@ -203,8 +205,9 @@ class spoolingPanel{
 
         jPanel.setLayout(new GridLayout(2,1));
         jPanel.add(new JLabel("状 态"));
-        jLabel = new JLabel("READY");
-        jPanel.add(jLabel);
+        jTextArea = new JTextArea(1,10);
+        jTextArea.setText("READY");
+        jPanel.add(jTextArea);
     }
 
     JPanel getjPanel(){
@@ -214,8 +217,10 @@ class spoolingPanel{
     void flashJLabel(int type){
 
         if(type == Type.READY)
-            jLabel.setText("READY");
-        else
-            jLabel.setText("WAIT_2");
+            jTextArea.setText("READY");
+        else if(type == Type.WAIT_2)
+            jTextArea.setText("WAIT_2");
+        else  if(type == Type.RUNNING)
+            jTextArea.setText("RUNNING");
     }
 }

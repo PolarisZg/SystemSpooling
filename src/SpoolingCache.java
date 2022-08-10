@@ -33,6 +33,7 @@ class Spooling {
         }
 
         outputBlock.setPath(cachePath + fileName + ".cacche");
+        outputBlock.setLength(file.length());
         fileNum ++;
 
         System.out.println("Spooling Cache add " + fileName );

@@ -23,6 +23,7 @@ public class CPU {
             try {
                 System.out.println("------Process.Process " + process.name + " in cpu in in");
                 CPUPanel.getInstance().setInfo(process.getClass().getName(),process.name);
+                process.setType(Type.RUNNING);
 
                 try {
                     TimeUnit.SECONDS.sleep(3);
@@ -36,6 +37,7 @@ public class CPU {
 
                 System.out.println("------Process.Process " + process.name + " out cpu out out");
                 CPUPanel.getInstance().setInfo("","");
+                process.setType(Type.READY);
             }
     }
 

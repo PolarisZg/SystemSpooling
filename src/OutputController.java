@@ -40,6 +40,7 @@ public class OutputController {
 class OutputBlock{
     private String name;
     private String path;
+    private long length;
 
     OutputBlock(String name){
         this.name = name;
@@ -51,6 +52,7 @@ class OutputBlock{
     String getPath(){
         return path;
     }
+    long getLength() {return length;}
 
     void setName(String name){
         this.name = name;
@@ -58,6 +60,7 @@ class OutputBlock{
     void setPath(String path){
         this.path = path;
     }
+    void setLength(long length) {this.length = length;}
 
     private OutputBlock(){}
 }
