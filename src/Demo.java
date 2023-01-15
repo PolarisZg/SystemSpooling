@@ -37,7 +37,7 @@ class ProcessInPanel{
         JTextField data = new JTextField();
         jPanel.add(data);
 
-        JButton add = new JButton("add Process");
+        JButton add = new JButton("添加 Process");
         add.addActionListener(e -> {
             (new Add(name.getText(),data.getText())).start();
         });
